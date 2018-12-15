@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
+import NotesContainer from './../notes-container/notes-container.jsx'
+import './app.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        </header>
+      <div className="app">
+        <NotesContainer />
       </div>
     );
   }

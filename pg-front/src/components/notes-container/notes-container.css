@@ -1,0 +1,8 @@
+.notes-container {
+    text-align: center;
+    display: inline-block;
+}
+
+.notes-container>h1 {
+    color: black; 
+}
