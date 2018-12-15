@@ -2,16 +2,30 @@ import React, { Component } from 'react';
 import Note from './../note/note'
 import './notes-container.css';
 
+const API ='https://demo9626765.mockable.io/notes'
+
 class NotesContainer extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { notes: [] };
+  }
+
+  componentDidMount() {
+    fetch(API)
+      .then(response => response.json())
+      .then(data => this.setState({ notes: data }));
+  }
+
   render() {
+    const { notes } = this.state;
     return (
       <div className="notes-container">
         <h1>Notes:</h1>
-        <Note title="Title" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."/>
-        <Note title="Title" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."/>
-        <Note title="Title" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."/>
-        <Note title="Title" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."/>
-        <Note title="Title" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."/>
+        {notes.map((note, i) => {
+          return (
+            <Note key={i} title={note.title} content={note.content} />)
+        })}
       </div>
     );
   }
