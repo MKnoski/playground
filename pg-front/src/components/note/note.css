@@ -1,7 +1,12 @@
 .note {
-    width: 500px;
-    background-color: #FFF475;
-    margin: 10px;
-    display:inline-block;
-    border-radius: 25px;
+  width: 500px;
+  background-color: #fff475;
+  margin: 10px;
+  display: inline-block;
+  border-radius: 25px;
+}
+
+.delete-button {
+    text-align: right;
+    margin: 20px;
 }

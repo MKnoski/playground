@@ -1,21 +1,24 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import './note-title.css';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import "./note-title.css";
 
 class NoteTitle extends PureComponent {
   render() {
     return (
-      <h2>{this.props.title}</h2>
-    )
+      <div className="note-title">
+        <Typography variant="title">{this.props.title}</Typography>
+      </div>
+    );
   }
 }
 
 NoteTitle.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string.isRequired
 };
 
 NoteTitle.defaultProps = {
-  title: ''
+  title: ""
 };
 
 export default NoteTitle;

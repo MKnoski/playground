@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import NotesContainer from './../notes-container/notes-container.jsx'
-import './app.css';
+import React, { Component } from "react";
+import NotesContainer from "./../notes-container/notes-container.jsx";
+import "./app.css";
 
 class App extends Component {
   render() {

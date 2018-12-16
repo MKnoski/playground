@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
-import Note from './../note/note'
-import './notes-container.css';
+import React, { Component } from "react";
+import Note from "./../note/note";
+import AddNoteModal from "./../add-note-modal/add-note-modal";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import "./notes-container.css";
 
-const API ='https://demo9626765.mockable.io/notes'
+const API = "https://demo9626765.mockable.io/notes";
 
 class NotesContainer extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { notes: [] };
+
+    this.state = {
+      notes: [],
+      isModalOpen: false
+    };
   }
 
   componentDidMount() {
@@ -17,14 +23,44 @@ class NotesContainer extends Component {
       .then(data => this.setState({ notes: data }));
   }
 
+  handleOpen = () => {
+    this.setState({ isModalOpen: true });
+  };
+
+  handleClose = () => {
+    this.setState({ isModalOpen: false });
+  };
+
+  handleDelete = (id) => {
+    this.setState(prevState => ({ notes: prevState.notes.filter(note => note.id !== id) }));
+  }
+
   render() {
     const { notes } = this.state;
+
     return (
       <div className="notes-container">
-        <h1>Notes:</h1>
+        <div>
+          <Typography component="h2" variant="h1" gutterBottom>
+            Notes
+          </Typography>
+          <Button
+            onClick={this.handleOpen}
+            variant="contained"
+            color="primary"
+            size="large"
+          >
+            <Typography variant="button" color="inherit">
+              ADD NEW NOTE
+            </Typography>
+          </Button>
+          <AddNoteModal
+            isModalOpen={this.state.isModalOpen}
+            handleClose={this.handleClose}
+          />
+        </div>
         {notes.map((note, i) => {
-          return (
-            <Note key={i} title={note.title} content={note.content} />)
+          return <Note key={i} id={note.id} title={note.title} content={note.content} handleDelete={this.handleDelete} />;
         })}
       </div>
     );

@@ -1,8 +1,8 @@
 .notes-container {
-    text-align: center;
-    display: inline-block;
+  text-align: center;
+  display: inline-block;
 }
 
-.notes-container>h1 {
-    color: black; 
+.notes-container > div > button {
+  margin-bottom: 40px;
 }
