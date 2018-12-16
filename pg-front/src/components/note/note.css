@@ -2,8 +2,8 @@
   width: 500px;
   background-color: #fff475;
   margin: 10px;
-  display: inline-block;
   border-radius: 25px;
+  display: inline-grid;
 }
 
 .delete-button {
