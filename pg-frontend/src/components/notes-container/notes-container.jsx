@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import "./notes-container.css";
 
-const API = "https://demo9626765.mockable.io/notes";
+const API = "http://localhost:53108/api/notes";
 
 class NotesContainer extends Component {
   constructor(props) {
@@ -31,9 +31,11 @@ class NotesContainer extends Component {
     this.setState({ isModalOpen: false });
   };
 
-  handleDelete = (id) => {
-    this.setState(prevState => ({ notes: prevState.notes.filter(note => note.id !== id) }));
-  }
+  handleDelete = id => {
+    this.setState(prevState => ({
+      notes: prevState.notes.filter(note => note.id !== id)
+    }));
+  };
 
   render() {
     const { notes } = this.state;
@@ -60,7 +62,15 @@ class NotesContainer extends Component {
           />
         </div>
         {notes.map((note, i) => {
-          return <Note key={i} id={note.id} title={note.title} content={note.content} handleDelete={this.handleDelete} />;
+          return (
+            <Note
+              key={i}
+              id={note.id}
+              title={note.title}
+              content={note.content}
+              handleDelete={this.handleDelete}
+            />
+          );
         })}
       </div>
     );
