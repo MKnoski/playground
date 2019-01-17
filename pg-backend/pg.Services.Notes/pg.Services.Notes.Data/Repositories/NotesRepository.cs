@@ -1,4 +1,7 @@
-﻿using pg.Services.Notes.Data.Models;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using pg.Services.Notes.Data.Database.Context;
+using pg.Services.Notes.Data.Models;
 using pg.Services.Notes.Data.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,66 +10,59 @@ namespace pg.Services.Notes.Data.Repositories
 {
     public class NotesRepository : INotesRepository
     {
-        private List<Note> notes;
+        private readonly INoteContext context;
 
-        public NotesRepository()
+        public NotesRepository(INoteContext context)
         {
-            this.notes = new List<Note>
+            this.context = context;
+
+            var note = new Note()
             {
-                new Note
-                {
-                    ID = 1,
-                    Title = "Title1",
-                    Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."
-                },
-                new Note
-                {
-                    ID = 2,
-                    Title = "Title2",
-                    Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."
-                },
-                new Note
-                {
-                    ID = 3,
-                    Title = "Title3",
-                    Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."
-                }
+                Title = "Test",
+                Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."
             };
+
+            this.context.Notes.InsertOne(note);
         }
 
         public List<Note> GetNotes()
         {
-            return this.notes;
+            return this.context.Notes.Find(_ => true).ToList();
         }
 
-        public Note GetNote(int id)
+        public Note GetNote(string id)
         {
-            return this.notes.SingleOrDefault(n => n.ID == id);
+            var filter = Builders<Note>.Filter.Eq(m => m.Id, ObjectId.Parse(id));
+            return this.context
+                    .Notes
+                    .Find(filter)
+                    .FirstOrDefault();
         }
 
         public void AddNote(Note note)
         {
-            this.notes.Add(note);
+            this.context.Notes.InsertOne(note);
         }
 
-        public void EditNote(int id, Note note)
+        public bool EditNote(string id, Note note)
         {
-            var noteToEdit = this.notes.SingleOrDefault(n => n.ID == id);
+            var updateResult = this.context
+                .Notes
+                .ReplaceOne(
+                    filter: g => g.Id == ObjectId.Parse(id),
+                    replacement: note);
 
-            if (noteToEdit != null)
-            {
-                noteToEdit = note;
-            }
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
         }
 
-        public void DeleteNote(int id)
+        public bool DeleteNote(string id)
         {
-            var noteToDelete = notes.SingleOrDefault(n => n.ID == id);
-
-            if (noteToDelete != null)
-            {
-                this.notes.Remove(noteToDelete);
-            }
+            var filter = Builders<Note>.Filter.Eq(m => m.Id, ObjectId.Parse(id));
+            var deleteResult = this.context
+                .Notes
+                .DeleteOne(filter);
+            return deleteResult.IsAcknowledged
+                && deleteResult.DeletedCount > 0;
         }
     }
 }

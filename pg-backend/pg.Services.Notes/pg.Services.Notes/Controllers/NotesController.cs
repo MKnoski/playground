@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using pg.Services.Notes.Data.Models;
 using pg.Services.Notes.Data.Repositories.Interfaces;
@@ -26,7 +23,7 @@ namespace pg.Services.Notes.Controllers
         }
 
         [HttpGet("{id}")]
-        public Note Get(int id)
+        public Note Get(string id)
         {
             var note = this.notesRepository.GetNote(id);
             return note;
@@ -39,13 +36,13 @@ namespace pg.Services.Notes.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Note note)
+        public void Put(string id, [FromBody]Note note)
         {
             this.notesRepository.EditNote(id, note);
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
             this.notesRepository.DeleteNote(id);
         }

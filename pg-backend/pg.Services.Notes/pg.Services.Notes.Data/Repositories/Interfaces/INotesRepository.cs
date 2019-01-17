@@ -7,12 +7,12 @@ namespace pg.Services.Notes.Data.Repositories.Interfaces
     {
         List<Note> GetNotes();
 
-        Note GetNote(int id);
+        Note GetNote(string id);
 
         void AddNote(Note note);
 
-        void EditNote(int id, Note note);
+        bool EditNote(string id, Note note);
 
-        void DeleteNote(int id);
+        bool DeleteNote(string id);
     }
 }

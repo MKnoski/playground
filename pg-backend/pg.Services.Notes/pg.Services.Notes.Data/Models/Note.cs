@@ -1,11 +1,17 @@
-﻿namespace pg.Services.Notes.Data.Models
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace pg.Services.Notes.Data.Models
 {
     public class Note
     {
-        public int ID { get; set; }
+        [BsonId]
+        public ObjectId Id { get; set; }
 
+        [BsonElement("Title")]
         public string Title { get; set; }
 
+        [BsonElement("Content")]
         public string Content { get; set; }
     }
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using pg.Services.Notes.Data.Database;
 using pg.Services.Notes.DependencyInjection;
 
 namespace pg.Services.Notes
@@ -24,6 +19,13 @@ namespace pg.Services.Notes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<MongoDbSettings>(
+                options =>
+                {
+                    options.ConnectionString = Configuration.GetSection("MongoDB:ConnectionString").Value;
+                    options.Database = Configuration.GetSection("MongoDB:Database").Value;
+                });
+
             services.RegisterRepositories();
 
             services.AddCors();
