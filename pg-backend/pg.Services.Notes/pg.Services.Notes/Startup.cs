@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using pg.Services.Notes.Data.Database;
 using pg.Services.Notes.DependencyInjection;
 
@@ -30,7 +31,7 @@ namespace pg.Services.Notes
 
             services.AddCors();
 
-            services.AddMvc();
+            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
@@ -39,7 +40,7 @@ namespace pg.Services.Notes
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -48,7 +49,16 @@ namespace pg.Services.Notes
 
             app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyMethod());
 
-            app.UseMvc();
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
