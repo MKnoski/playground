@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace pg.Services.EntityFramework
+namespace pg.EntityFramework
 {
     public class Program
     {

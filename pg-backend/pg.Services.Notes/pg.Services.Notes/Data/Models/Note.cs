@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace pg.Services.Notes.Data.Models
+namespace pg.MongoDb.Data.Models
 {
     public class Note
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace pg.Services.Notes.Data.Database
+namespace pg.MongoDb.Data.Database
 {
     public abstract class DbContext
     {

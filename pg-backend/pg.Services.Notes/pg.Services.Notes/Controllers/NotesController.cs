@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using pg.Services.Notes.Data.Models;
-using pg.Services.Notes.Data.Repositories.Interfaces;
+using pg.MongoDb.Data.Models;
+using pg.MongoDb.Data.Repositories.Interfaces;
 
-namespace pg.Services.Notes.Controllers
+namespace pg.MongoDb.Controllers
 {
     [Route("api/[controller]")]
     public class NotesController : Controller

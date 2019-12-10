@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using pg.Services.Notes.Data.Database;
-using pg.Services.Notes.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using pg.MongoDb.Data.Database;
+using pg.MongoDb.DependencyInjection;
 
-namespace pg.Services.Notes
+namespace pg.MongoDb
 {
     public class Startup
     {
@@ -35,7 +36,7 @@ namespace pg.Services.Notes
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
         }
 
@@ -60,14 +61,11 @@ namespace pg.Services.Notes
                 endpoints.MapControllers();
             });
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
             });
         }
     }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace pg.Services.EntityFramework.Database
+namespace pg.EntityFramework.Database
 {
     public class BloggingContext : DbContext
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace pg.Services.EntityFramework.Database
+namespace pg.EntityFramework.Database
 {
     public class BloggingService
     {

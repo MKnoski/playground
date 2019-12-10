@@ -1,12 +1,12 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
+using MongoDB.Bson;
 using MongoDB.Driver;
-using pg.Services.Notes.Data.Database.Context;
-using pg.Services.Notes.Data.Models;
-using pg.Services.Notes.Data.Repositories.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
+using pg.MongoDb.Data.Database.Context;
+using pg.MongoDb.Data.Models;
+using pg.MongoDb.Data.Repositories.Interfaces;
 
-namespace pg.Services.Notes.Data.Repositories
+namespace pg.MongoDb.Data.Repositories
 {
     public class NotesRepository : INotesRepository
     {
@@ -16,13 +16,16 @@ namespace pg.Services.Notes.Data.Repositories
         {
             this.context = context;
 
-            var note = new Note()
+            if (!(this.context.Notes.CountDocuments(_ => true) > 0))
             {
-                Title = "Test",
-                Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."
-            };
+                var note = new Note()
+                {
+                    Title = "Test",
+                    Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultrices vel odio ac porttitor. Sed vel posuere enim, ac elementum lectus. Nam eget tincidunt nisl. Proin ut arcu auctor, ornare mauris id, malesuada diam. Quisque bibendum suscipit ullamcorper. Vestibulum eget varius tortor, lacinia suscipit erat. Mauris luctus lacus odio, non euismod lectus cursus id. Etiam molestie diam mi, id gravida lectus auctor in. Praesent venenatis blandit maximus. Pellentesque commodo augue quis erat efficitur elementum. Sed vitae convallis tellus. Aenean eu orci sed ante molestie dapibus ut vel lacus. Morbi massa orci, commodo in tellus eget, efficitur vehicula est. Phasellus varius condimentum nisi, nec luctus tortor cursus id. Sed bibendum dui sit amet nisi interdum pretium. Sed in odio mauris."
+                };
 
-            this.context.Notes.InsertOne(note);
+                this.context.Notes.InsertOne(note);
+            }
         }
 
         public List<Note> GetNotes()

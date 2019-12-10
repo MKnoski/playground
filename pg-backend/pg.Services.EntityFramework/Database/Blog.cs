@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace pg.Services.EntityFramework.Database
+namespace pg.EntityFramework.Database
 {
     public class Blog
     {

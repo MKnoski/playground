@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace pg.Services.EntityFramework.Migrations
+namespace pg.EntityFramework.Migrations
 {
     public partial class InitialCreate : Migration
     {

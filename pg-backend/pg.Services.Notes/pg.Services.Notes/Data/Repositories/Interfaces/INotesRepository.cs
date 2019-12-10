@@ -1,7 +1,7 @@
-﻿using pg.Services.Notes.Data.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using pg.MongoDb.Data.Models;
 
-namespace pg.Services.Notes.Data.Repositories.Interfaces
+namespace pg.MongoDb.Data.Repositories.Interfaces
 {
     public interface INotesRepository
     {

@@ -1,4 +1,4 @@
-﻿namespace pg.Services.EntityFramework.Database
+﻿namespace pg.EntityFramework.Database
 {
     public class Post
     {

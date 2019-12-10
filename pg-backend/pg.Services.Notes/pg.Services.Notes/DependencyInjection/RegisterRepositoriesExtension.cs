@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Driver;
-using pg.Services.Notes.Data.Database.Context;
-using pg.Services.Notes.Data.Repositories;
-using pg.Services.Notes.Data.Repositories.Interfaces;
+using pg.MongoDb.Data.Database.Context;
+using pg.MongoDb.Data.Repositories;
+using pg.MongoDb.Data.Repositories.Interfaces;
 
-namespace pg.Services.Notes.DependencyInjection
+namespace pg.MongoDb.DependencyInjection
 {
     public static class RegisterRepositoriesExtension
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using pg.Services.EntityFramework.Database;
+using pg.EntityFramework.Database;
 
-namespace pg.Services.EntityFramework.Controllers
+namespace pg.EntityFramework.Controllers
 {
     [ApiController]
     [Route("[controller]")]

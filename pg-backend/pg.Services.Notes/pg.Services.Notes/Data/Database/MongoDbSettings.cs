@@ -1,4 +1,4 @@
-﻿namespace pg.Services.Notes.Data.Database
+﻿namespace pg.MongoDb.Data.Database
 {
     public class MongoDbSettings
     {
