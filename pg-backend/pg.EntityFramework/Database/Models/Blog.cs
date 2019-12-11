@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace pg.EntityFramework.Database
+namespace pg.EntityFramework.Database.Models
 {
     public class Blog
     {
@@ -8,6 +8,6 @@ namespace pg.EntityFramework.Database
 
         public string Url { get; set; }
 
-        public IEnumerable<Post> Posts { get; } 
+        public IEnumerable<Post> Posts { get; }
     }
 }

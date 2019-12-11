@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A58A463E-1BA5-4571-8921-1CD7DE3B7FDD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.ApiGateway", "pg.ApiGateway\pg.ApiGateway\pg.ApiGateway.csproj", "{63C506A9-8494-4FA2-A4F7-09F10F6B8D77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.ApiGateway", "pg.ApiGateway\pg.ApiGateway.csproj", "{63C506A9-8494-4FA2-A4F7-09F10F6B8D77}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.MongoDb", "pg.Services.Notes\pg.Services.Notes\pg.MongoDb.csproj", "{1A7707D4-24FF-436B-AB6C-68B8A468C12F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.MongoDb", "pg.MongoDb\pg.MongoDb.csproj", "{1A7707D4-24FF-436B-AB6C-68B8A468C12F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.IdentityServer", "pg.Services.Identity\pg.Services.Identity\pg.IdentityServer.csproj", "{31FF17E6-61D1-4543-ACDF-78239DEB4D5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.IdentityServer", "pg.IdentityServer\pg.IdentityServer.csproj", "{31FF17E6-61D1-4543-ACDF-78239DEB4D5B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.EntityFramework", "pg.Services.EntityFramework\pg.EntityFramework.csproj", "{DA2D50FD-4E66-4DEC-8125-D52DB11416B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.EntityFramework", "pg.EntityFramework\pg.EntityFramework.csproj", "{DA2D50FD-4E66-4DEC-8125-D52DB11416B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

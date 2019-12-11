@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using pg.EntityFramework.Database.Models;
 
 namespace pg.EntityFramework.Database
 {

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using pg.EntityFramework.Database;
+using pg.EntityFramework.Database.Models;
 
 namespace pg.EntityFramework.Controllers
 {
