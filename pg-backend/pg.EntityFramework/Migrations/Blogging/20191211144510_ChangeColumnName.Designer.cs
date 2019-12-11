@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pg.EntityFramework.Database;
 
 namespace pg.EntityFramework.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    partial class BloggingContextModelSnapshot : ModelSnapshot
+    [Migration("20191211144510_ChangeColumnName")]
+    partial class ChangeColumnName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,10 +20,11 @@ namespace pg.EntityFramework.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("pg.EntityFramework.Database.Blog", b =>
+            modelBuilder.Entity("pg.EntityFramework.Database.Models.Blog", b =>
                 {
                     b.Property<int>("BlogId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -33,7 +36,7 @@ namespace pg.EntityFramework.Migrations
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("pg.EntityFramework.Database.Post", b =>
+            modelBuilder.Entity("pg.EntityFramework.Database.Models.Post", b =>
                 {
                     b.Property<int>("PostId")
                         .ValueGeneratedOnAdd()
@@ -56,9 +59,9 @@ namespace pg.EntityFramework.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("pg.EntityFramework.Database.Post", b =>
+            modelBuilder.Entity("pg.EntityFramework.Database.Models.Post", b =>
                 {
-                    b.HasOne("pg.EntityFramework.Database.Blog", "Blog")
+                    b.HasOne("pg.EntityFramework.Database.Models.Blog", "Blog")
                         .WithMany("Posts")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -22,6 +22,7 @@ namespace pg.EntityFramework.Database
         public Blog Get(int id)
         {
             var blog = db.Blogs.SingleOrDefault(b => b.BlogId == id);
+
             return blog;
         }
 
@@ -37,9 +38,16 @@ namespace pg.EntityFramework.Database
             db.SaveChanges();
         }
 
+        public void Update2(Blog blog)
+        {
+            var exist = db.Blogs.Find(blog.BlogId);
+            this.db.Entry(exist).CurrentValues.SetValues(blog);
+            db.SaveChanges();
+        }
+
         public void Remove(int id)
         {
-            db.Remove(new Blog {BlogId = id});
+            db.Remove(new Blog(id));
             db.SaveChanges();
         }
     }

@@ -9,8 +9,8 @@ using pg.EntityFramework.Database;
 namespace pg.EntityFramework.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    [Migration("20191209170010_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20191211141427_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,7 +20,7 @@ namespace pg.EntityFramework.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("pg.EntityFramework.Database.Blog", b =>
+            modelBuilder.Entity("pg.EntityFramework.Database.Models.Blog", b =>
                 {
                     b.Property<int>("BlogId")
                         .ValueGeneratedOnAdd()
@@ -35,7 +35,7 @@ namespace pg.EntityFramework.Migrations
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("pg.EntityFramework.Database.Post", b =>
+            modelBuilder.Entity("pg.EntityFramework.Database.Models.Post", b =>
                 {
                     b.Property<int>("PostId")
                         .ValueGeneratedOnAdd()
@@ -58,9 +58,9 @@ namespace pg.EntityFramework.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("pg.EntityFramework.Database.Post", b =>
+            modelBuilder.Entity("pg.EntityFramework.Database.Models.Post", b =>
                 {
-                    b.HasOne("pg.EntityFramework.Database.Blog", "Blog")
+                    b.HasOne("pg.EntityFramework.Database.Models.Blog", "Blog")
                         .WithMany("Posts")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)

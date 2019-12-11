@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using pg.EntityFramework.Database;
+using pg.EntityFramework.Database.Models.TableSplitting;
 
 namespace pg.EntityFramework
 {
@@ -24,7 +25,10 @@ namespace pg.EntityFramework
             services.AddControllers();
 
             services.AddDbContext<BloggingContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServerDatabase")));
+
+            services.AddDbContext<OrdersContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServerDatabase")));
 
             services.AddSwaggerGen(c =>
             {
