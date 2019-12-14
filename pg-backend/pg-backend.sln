@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.IdentityServer", "pg.Ide
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.EntityFramework", "pg.EntityFramework\pg.EntityFramework.csproj", "{DA2D50FD-4E66-4DEC-8125-D52DB11416B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pg.Xamarin", "pg.Xamarin\pg.Xamarin.csproj", "{38E53B37-75C8-4B3E-ACF5-2F3C45B79E96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,12 @@ Global
 		{DA2D50FD-4E66-4DEC-8125-D52DB11416B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA2D50FD-4E66-4DEC-8125-D52DB11416B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA2D50FD-4E66-4DEC-8125-D52DB11416B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E53B37-75C8-4B3E-ACF5-2F3C45B79E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E53B37-75C8-4B3E-ACF5-2F3C45B79E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E53B37-75C8-4B3E-ACF5-2F3C45B79E96}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{38E53B37-75C8-4B3E-ACF5-2F3C45B79E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E53B37-75C8-4B3E-ACF5-2F3C45B79E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E53B37-75C8-4B3E-ACF5-2F3C45B79E96}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{1A7707D4-24FF-436B-AB6C-68B8A468C12F} = {A58A463E-1BA5-4571-8921-1CD7DE3B7FDD}
 		{31FF17E6-61D1-4543-ACDF-78239DEB4D5B} = {A58A463E-1BA5-4571-8921-1CD7DE3B7FDD}
 		{DA2D50FD-4E66-4DEC-8125-D52DB11416B5} = {A58A463E-1BA5-4571-8921-1CD7DE3B7FDD}
+		{38E53B37-75C8-4B3E-ACF5-2F3C45B79E96} = {A58A463E-1BA5-4571-8921-1CD7DE3B7FDD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8BF023B0-05DA-413F-8DD2-1869D52178B7}
