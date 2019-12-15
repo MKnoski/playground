@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace pg.Xamarin
+namespace pg.Xamarin.Services
 {
     public static class PhonewordTranslator
     {

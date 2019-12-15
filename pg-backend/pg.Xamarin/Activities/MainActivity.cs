@@ -4,12 +4,22 @@ using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
 using Xamarin.Essentials;
+using pg.Xamarin.Services;
+using System.Collections.Generic;
+using Android.Content;
 
-namespace pg.Xamarin
+namespace pg.Xamarin.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        EditText phoneNumberText;
+        TextView translatedPhoneWord;
+        Button translateButton;
+        Button translationHistoryButton;
+
+        static readonly List<string> phoneNumbers = new List<string>();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -18,10 +28,17 @@ namespace pg.Xamarin
             SetContentView(Resource.Layout.activity_main);
 
             // Get our UI controls from the loaded layout
-            EditText phoneNumberText = FindViewById<EditText>(Resource.Id.PhoneNumberText);
-            TextView translatedPhoneWord = FindViewById<TextView>(Resource.Id.TranslatedPhoneword);
-            Button translateButton = FindViewById<Button>(Resource.Id.TranslateButton);
+            phoneNumberText = FindViewById<EditText>(Resource.Id.PhoneNumberText);
+            translatedPhoneWord = FindViewById<TextView>(Resource.Id.TranslatedPhoneword);
+            translationHistoryButton = FindViewById<Button>(Resource.Id.TranslationHistoryButton);
+            translationHistoryButton.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(TranslationHistoryActivity));
+                intent.PutStringArrayListExtra("phone_numbers", phoneNumbers);
+                StartActivity(intent);
+            };
 
+            translateButton = FindViewById<Button>(Resource.Id.TranslateButton);
             translateButton.Click += (sender, e) =>
             {
                 // Translate user's alphanumeric phone number to numeric
@@ -33,6 +50,8 @@ namespace pg.Xamarin
                 else
                 {
                     translatedPhoneWord.Text = translatedNumber;
+                    phoneNumbers.Add(translatedNumber);
+                    translationHistoryButton.Enabled = true;
                 }
             };
 
